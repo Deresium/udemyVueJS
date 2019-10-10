@@ -6,7 +6,9 @@
 </head>
 <body>
     <div id="app">
-        <p>{{ title }}</p>
+        <h1 v-once>{{title}}</h1>
+        <p>{{ sayHello() }} - <a v-bind:href="link" title="google ref">Google</a></p>
+        <p v-html="htmlLink "></p>
     </div>
 </body>
 <script src="vue.js"></script>
@@ -14,8 +16,16 @@
     new Vue({
        el: '#app',
        data:{
-           title: 'Hello world'
-       }
+           title: 'Hello world',
+           link: 'http://google.com',
+           htmlLink: '<a href="http://google.com">google</a>'
+       },
+        methods:{
+           sayHello: function(){
+               this.title = 'Hello!';
+               return this.title;
+           }
+        }
     });
 </script>
 </html>
