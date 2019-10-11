@@ -6,9 +6,18 @@
 </head>
 <body>
     <div id="app">
+        <!-- v-bind (get data from Vue instance-->
         <h1 v-once>{{title}}</h1>
         <p>{{ sayHello() }} - <a v-bind:href="link" title="google ref">Google</a></p>
         <p v-html="htmlLink "></p>
+
+        <!-- v-on attach event from Vue instance -->
+        <button v-on:click="increaseCounter(2, $event)"> Click to increase</button>
+        <p>{{counter}}</p>
+        <p v-on:mousemove="updateCoordinates">
+            Coordinates: {{ x }} / {{ y }}
+            <span v-on:mousemove.stop>DEAD SPOT</span>
+        </p>
     </div>
 </body>
 <script src="vue.js"></script>
@@ -18,13 +27,24 @@
        data:{
            title: 'Hello world',
            link: 'http://google.com',
-           htmlLink: '<a href="http://google.com">google</a>'
+           htmlLink: '<a href="http://google.com">google</a>',
+           counter: 0,
+           x: 0,
+           y: 0
        },
         methods:{
            sayHello: function(){
                this.title = 'Hello!';
                return this.title;
-           }
+           },
+            increaseCounter: function(step, event){
+               this.counter += step;
+            },
+            updateCoordinates: function(event){
+               this.x = event.clientX;
+               this.y = event.clientY;
+            }
+
         }
     });
 </script>
