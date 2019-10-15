@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Udemy 27</title>
+    <style>
+        .demo {
+            width: 100px;
+            height: 100px;
+            background-color: grey;
+            display: inline-block;
+            margin: 10px;
+        }
+        .red{
+            background-color: red;
+        }
+        .green{
+            background-color: green;
+        }
+        .blue{
+            background-color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="demo"
+             @click="attachRed = !attachRed"
+             :class="divClasses"
+        >
+
+        </div>
+        <div class="demo" :style="myStyle"></div>
+        <div class="demo"></div>
+        <label>
+            Color:
+            <input type="text" v-model="color"/>
+        </label>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            attachRed: false,
+            color: 'gray'
+        },
+        computed: {
+            divClasses: function(){
+                return{
+                    red: this.attachRed,
+                    blue: !this.attachRed
+                }
+            },
+            myStyle: function(){
+                return{
+                    'background-color': this.color
+                }
+            }
+        }
+    });
+</script>
+</html>

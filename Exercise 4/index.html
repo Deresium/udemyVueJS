@@ -1,0 +1,92 @@
+<script src="https://npmcdn.com/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="styles.css"/>
+
+<div id="exercise">
+    <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
+    <div>
+        <button @click="startEffect">Start Effect</button>
+        <div id="effect" :class="alternateClasses"></div>
+    </div>
+    <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
+    <div :class="[myParticularClass, {font93: true}]">I got no class :(</div>
+    <!-- 3) Let the user enter a class (create some example classes) and attach it -->
+    <div>
+        <input type="text" v-model="userClass">
+        <div :class="userClass"></div>
+    </div>
+    <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
+    <div>
+        <input type="text" v-model="secondUserClass">
+        <input type="text" v-model="addSecondUserClass">
+        <div :class="[secondUserClass, mySecondUserClass]"></div>
+    </div>
+    <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
+    <div>
+        <input type="text" v-model="userStyle">
+        <div :style="userStyleValue"></div>
+    </div>
+    <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
+    <div>
+        <button @click="launchPogress">Start Progress</button>
+        <div class="progressBar" :style="fillProgressBar"></div>
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#exercise',
+        data: {
+            attachHightlight: false,
+            color: 'red',
+            userClass: null,
+            secondUserClass: null,
+            addSecondUserClass: 'false',
+            userStyle: null,
+            percentage: 0
+        },
+        computed: {
+            alternateClasses: function(){
+                return{
+                    highlight: this.attachHightlight,
+                    shrink: !this.attachHightlight
+                }
+            },
+            myParticularClass: () => ({
+                border: true
+            }),
+            mySecondUserClass: function(){
+                return{
+                    secondClass: this.addSecondUserClass === 'true'
+                }
+            },
+            userStyleValue: function(){
+                return{
+                    'background-color': 'blue',
+                    'height': this.userStyle
+                }
+            },
+            fillProgressBar: function(){
+                return{
+                    'width': `${this.percentage}%`
+                }
+            }
+        },
+        methods: {
+            startEffect: function() {
+                const vm = this;
+                setInterval(() => {
+                    vm.attachHightlight = !vm.attachHightlight;
+                }, 1000);
+            },
+
+            launchPogress: function(){
+                const vm = this;
+                const intervalId = setInterval(() => {
+                    vm.percentage += 1;
+                    if(vm.percentage === 100){
+                        clearInterval(intervalId);
+                    }
+                }, 50);
+            }
+        }
+    });
+</script>

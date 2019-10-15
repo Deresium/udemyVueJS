@@ -8,11 +8,11 @@
     <div id="app">
         <!-- v-bind (get data from Vue instance-->
         <h1 v-once>{{title}}</h1>
-        <p>{{ sayHello() }} - <a v-bind:href="link" title="google ref">Google</a></p>
+        <p>{{ sayHello() }} - <a :href="link" title="google ref">Google</a></p>
         <p v-html="htmlLink "></p>
 
         <!-- v-on attach event from Vue instance -->
-        <button v-on:click="increaseCounter(2, $event)"> Click to increase</button>
+        <button @click="increaseCounter(2, $event)"> Click to increase</button>
         <p>{{counter}}</p>
         <p v-on:mousemove="updateCoordinates">
             Coordinates: {{ x }} / {{ y }}

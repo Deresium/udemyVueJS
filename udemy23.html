@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Udemy 23</title>
+</head>
+<body>
+    <div id="app">
+        <button v-on:click="counter++"> Increase </button>
+        <button v-on:click="counter--"> Decrease </button>
+        <button v-on:click="secondCounter++"> Increase Second </button>
+        <p> Counter: {{ counter }} | {{ secondCounter }}</p>
+        <p> Result: {{ result() }} | {{ output }}</p>
+    </div>
+</body>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+       el: '#app',
+       data:{
+           counter: 0,
+           secondCounter: 0
+       },
+        computed: {
+           output: function(){
+               let output;
+               console.debug('Computed');
+               if(this.counter > 5) {
+                   output = 'Greater than 5';
+               }
+               else {
+                   output = 'Smaller than 5';
+               }
+               return output;
+           }
+        },
+        watch: {
+          counter: function(newValue){
+              var vm = this;
+              setTimeout(function(){
+                vm.counter = 0;
+              }, 2000);
+          }
+        },
+        methods: {
+            result: function(){
+                let output;
+                console.debug('Methods');
+                if(this.counter > 5) {
+                    output = 'Greater than 5';
+                }
+                else {
+                    output = 'Smaller than 5';
+                }
+                return output;
+            }
+        }
+    });
+</script>
+</html>
