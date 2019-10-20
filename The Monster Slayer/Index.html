@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Monster Slayer</title>
+    <link rel="stylesheet" href="monsterSlayer.css">
+</head>
+<body>
+    <div id="app">
+        <div class="player" v-for="player in players" :key="player.name">
+            <h1>{{ player.name }}</h1>
+            <div>{{ player.hp }}</div>
+        </div>
+        <div id="commands">
+            <template v-if="!inGame">
+                <button @click="startGame">Start new game</button>
+            </template>
+            <template v-else>
+                <button @click="attack">Attack</button>
+                <button @click="specialAttack">Special attack</button>
+                <button @click="heal">Heal</button>
+                <button @click="giveUp">Give up</button>
+            </template>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://npmcdn.com/vue/dist/vue.js"></script>
+<script src="Player.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            inGame: false,
+            logs: [],
+            players: {
+                player: new Player('You'),
+                monster: new Player('Monster')
+            }
+        },
+        methods:{
+            startGame: function(){
+                this.inGame = true;
+            },
+            attack: function(){
+                const monster = this.players.monster;
+                const player = this.players.player;
+                const monsterHit = monster.hit(1, 10);
+                const playerHit = player.hit(1, 10);
+                monster.receiveHit(playerHit);
+                this.addLog(player, monster, playerHit);
+                player.receiveHit(monsterHit);
+                this.addLog(monster, player, monsterHit);
+            },
+            specialAttack: function(){
+
+            },
+            heal: function(){
+
+            },
+            giveUp: function(){
+
+            },
+            addLog: function(hitPlayer, reveivePlayer, hp){
+                this.logs.push(`${hitPlayer.name} hit ${reveivePlayer.name} for ${hp}`);
+                console.debug(this.logs);
+            }
+        }
+    });
+</script>
