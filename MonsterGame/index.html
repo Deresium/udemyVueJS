@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Slayer</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">YOU</h1>
+            <div class="healthbar">
+                <div :style="greenPlayerBar" class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                    {{ game.getPlayer().hp }}
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">MONSTER</h1>
+            <div class="healthbar">
+                <div :style="greenMonsterBar" class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                    {{ game.getMonster().hp }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section v-if="!game.isInGame()" class="row controls">
+        <div class="small-12 columns">
+            <button @click="startGame" id="start-game">START NEW GAME</button>
+        </div>
+    </section>
+    <section v-if="game.isInGame()" class="row controls">
+        <div class="small-12 columns">
+            <button @click="attack" id="attack">ATTACK</button>
+            <button @click="specialAttack" id="special-attack">SPECIAL ATTACK</button>
+            <button @click="heal" id="heal">HEAL</button>
+            <button @click="giveUp" id="give-up">GIVE UP</button>
+        </div>
+    </section>
+    <section v-if="game.logs.length > 0" class="row log">
+        <div class="small-12 columns">
+            <ul>
+                <li :class="backgroundLog(log)" v-for="log in game.getLogs()">
+                    {{ log.text }}
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+<script src="https://npmcdn.com/vue/dist/vue.js"></script>
+<script src="Log.js"></script>
+<script src="Game.js"></script>
+<script src="Player.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            game: new Game()
+        },
+        computed: {
+            greenPlayerBar: function(){
+                return{
+                    'width': `${this.game.getPlayer().hp}%`
+                }
+            },
+            greenMonsterBar: function(){
+                return{
+                    'width': `${this.game.getMonster().hp}%`
+                }
+            },
+        },
+        methods:{
+            backgroundLog: function(log){
+                return{
+                    'player-turn': log.isMe,
+                    'monster-turn': !log.isMe
+                }
+            },
+            startGame: function(){
+                this.game.startGame();
+            },
+            attack: function(){
+                this.game.hitRound(1, 10);
+                this.alertIfEndGame();
+            },
+            specialAttack: function(){
+                this.game.hitRound(10, 20);
+                this.alertIfEndGame();
+            },
+            heal: function(){
+                this.game.healRound();
+                this.alertIfEndGame();
+            },
+            giveUp: function(){
+                this.game.endGame();
+            },
+            alertIfEndGame: function(){
+                if(this.game.checkEndGame()){
+                    if(this.game.getPlayer().isDead()){
+                        alert('Monster win. Play again?');
+                    }else{
+                        alert('You win. Play again?');
+                    }
+                }
+            }
+        }
+    });
+</script>
