@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>life cycle vuejs instance</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <button @click="title = 'Changed'">Update title</button>
+        <button @click="destroy">Destroy</button>
+    </div>
+</body>
+</html>
+<script src="https://npmcdn.com/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            title: 'The VueJS instance'
+        },
+        beforeCreate: function(){
+            console.debug('beforeCreate');
+        },
+        created: function(){
+            console.debug('Created');
+        },
+        beforeMount: function(){
+            console.debug('beforeMount');
+        },
+        mounted: function(){
+            console.debug('Mounted');
+        },
+        beforeUpdate: function(){
+            console.debug('beforeUpdate');
+        },
+        updated: function(){
+            console.debug('Updated');
+        },
+        beforeDestroy: function(){
+            console.debug('beforeDestroy');
+        },
+        destroyed: function(){
+            console.debug('destroyed');
+        },
+        methods:{
+            destroy: function(){
+                this.$destroy();
+            }
+        }
+    });
+</script>
