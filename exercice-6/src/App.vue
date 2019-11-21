@@ -9,9 +9,9 @@
 </template>
 
 <script>
-    import HeaderApp from './components/HeaderApp'
-    import ServerList from './components/ServersList'
-    import FooterApp from "./components/FooterApp";
+    import HeaderApp from './components/Shared/HeaderApp'
+    import ServerList from './components/Server/ServersList'
+    import FooterApp from "./components/Shared/FooterApp";
     export default {
         name: 'app',
         components: {

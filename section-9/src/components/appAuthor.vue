@@ -1,11 +1,12 @@
 <template>
-    <div class="col-xs-12 col-sm-6">
-        <p>Server Details are currently not updated</p>
+    <div>
+        <h3>The author</h3>
     </div>
 </template>
 
 <script>
     export default {
+
     }
 </script>
 
