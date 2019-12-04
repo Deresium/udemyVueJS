@@ -30,6 +30,11 @@
         <button @click="launchPogress">Start Progress</button>
         <div class="progressBar" :style="fillProgressBar"></div>
     </div>
+
+    <hr/>
+    <div class="divBoxColor" :class="[classFromComputed]">
+        This is a div box
+    </div>
 </div>
 <script>
     new Vue({
@@ -67,6 +72,11 @@
             fillProgressBar: function(){
                 return{
                     'width': `${this.percentage}%`
+                }
+            },
+            classFromComputed(){
+                return{
+                    secondClass: true
                 }
             }
         },

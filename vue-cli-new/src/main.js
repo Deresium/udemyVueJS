@@ -5,6 +5,7 @@ import router from './router'
 import store from './store'
 import StatusController from './views/StatusController'
 
+// Register component globally
 Vue.component('ds-status-controller', StatusController)
 
 Vue.config.productionTip = false

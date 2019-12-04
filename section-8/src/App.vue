@@ -13,7 +13,7 @@
 
     export default {
         components: {
-            appUser: User
+            'app-user': User
         }
     }
 </script>
