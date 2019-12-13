@@ -1,0 +1,1 @@
+export const addCar = (context, car) => context.commit('addCar', car);

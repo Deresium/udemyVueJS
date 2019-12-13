@@ -1,0 +1,1 @@
+export const carsList = state => state.cars;

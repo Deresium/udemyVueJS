@@ -1,0 +1,1 @@
+export const stringFunds = state => `$${state.funds.toLocaleString()}`;
