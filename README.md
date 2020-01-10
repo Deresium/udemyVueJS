@@ -13,13 +13,13 @@ section 7 / Exercice 6 - Introduction to component<br/>
 section 8 / Exercice 7 - Communication bewteen components<br/>
 section 9 / Exercice 8 - slots and dynamic components<br/>
 section 10 - Project with all the previous points<br/>
-section 11 / Exercice 9 - Handling forms and custom control
-section 12 / Exercice 10 - Create directives + modifiers
-section 13 / Exercice 11 - Filters and Mixins
-section 14 / section-14-quizz - Transitions, CSS & JS animations
-section 15 (deprecated) - http request with vue-ressource. Go to section section 22
-section 16 - Vue Router
-section 17 - Vuex
-stock-trader - Final project with all the previous points
-section 22 - http request with Axios & authentication
-vue-cli-new - New features with Vue CLI 3
+section 11 / Exercice 9 - Handling forms and custom control<br/>
+section 12 / Exercice 10 - Create directives + modifiers<br/>
+section 13 / Exercice 11 - Filters and Mixins<br/>
+section 14 / section-14-quizz - Transitions, CSS & JS animations<br/>
+section 15 (deprecated) - http request with vue-ressource. Go to section section 22<br/>
+section 16 - Vue Router<br/>
+section 17 - Vuex<br/>
+stock-trader - Final project with all the previous points<br/>
+section 22 - http request with Axios & authentication<br/>
+vue-cli-new - New features with Vue CLI 3<br/>
